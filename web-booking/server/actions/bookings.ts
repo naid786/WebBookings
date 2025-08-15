@@ -6,6 +6,7 @@ import { bookingActionSchema } from "@/schema/booking";
 import { z } from "zod";
 import { createCalendarEvent } from "../googleCalendar";
 import { redirect } from "next/navigation";
+import { fromZonedTime } from "date-fns-tz";
 
 export const createBooking = async (unSavedData: z.infer<typeof bookingActionSchema>) => {
 
@@ -29,6 +30,8 @@ export const createBooking = async (unSavedData: z.infer<typeof bookingActionSch
         return { error: true, message: "Event not found or not active." };
     }
 
+    const startInTimezone = fromZonedTime(data.startTime,data.timezone)
+
     const validTimes = await getValidTimesFromSchedule([data.startTime],event)
 
     if (validTimes.length === 0) {
@@ -37,6 +40,7 @@ export const createBooking = async (unSavedData: z.infer<typeof bookingActionSch
 
     await createCalendarEvent({
         ...data,
+        startTime: startInTimezone,
         durationInMinutes: event.durationInMinutes,
         eventName: event.name,
         summary: event.name // or provide a more descriptive summary if needed

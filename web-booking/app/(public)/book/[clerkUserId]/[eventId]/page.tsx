@@ -9,6 +9,8 @@ import { not } from "drizzle-orm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export const revalidated = 0;
+
 const BookEventPage = async ({ params }: { params: { clerkUserId: string, eventId: string } }) => {
     const { clerkUserId, eventId } = await params;
 

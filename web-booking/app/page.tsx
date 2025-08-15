@@ -1,4 +1,5 @@
 import Hero from "@/components/hero";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
@@ -12,6 +13,7 @@ export default async function Home() {
   
   return (
     <main>
+      <Navbar />
       <Hero />
     </main>
   );
