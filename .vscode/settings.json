@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "webbookings",
+            "database": "webbookings",
+            "username": "myappuser",
+            "password": "userpassword"
+        }
+    ]
+}
